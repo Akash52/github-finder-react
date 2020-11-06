@@ -5,7 +5,7 @@ import "./App.css";
 export default function App() {
   return (
     <div>
-      <Navbar />
+      <Navbar title=" Github Finder" icon="fab fa-github" />
     </div>
   );
 }
