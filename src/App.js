@@ -7,8 +7,9 @@ export default function App() {
   return (
     <div>
       <Navbar title=" Github Finder" icon="fab fa-github" />
-
-      <Users />
+      <div className="container">
+        <Users />
+      </div>
     </div>
   );
 }
