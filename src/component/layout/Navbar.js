@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class Navbar extends Component {
+const Navbar=(props)=>  {
   render() {
     return (
       <nav className="navbar drop-shadow bg-primary ">
