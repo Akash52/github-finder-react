@@ -12,3 +12,5 @@ export const Spinner = () => {
     </>
   )
 }
+
+export default Spinner
