@@ -205,7 +205,6 @@ img {
   background: var(--light-color);
   color: #333;
   padding: 0.4rem 1.4rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
   border: none;
   border-radius: 5px;
