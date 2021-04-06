@@ -10,22 +10,33 @@ class App extends Component {
     users: [],
     loading: false,
   }
-  async componentDidMount() {
+  // async componentDidMount() {
+  //   const REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
+  //   const REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
+
+  //   this.setState({ loading: true })
+  //   const res = await axios.get(
+  //     `https://api.github.com/users?client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
+  //   )
+  //   this.setState({ users: res.data, loading: false })
+  // }
+  //Search  Github Users
+  searchUsers = async (text) => {
+    this.setState({ loading: true })
     const REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
     const REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
-
-    this.setState({ loading: true })
     const res = await axios.get(
-      `https://api.github.com/users?client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
+      `https://api.github.com/search/users?q=${text}&client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
     )
-    this.setState({ users: res.data, loading: false })
+    this.setState({ users: res.data.items, loading: false })
   }
+
   render() {
     return (
       <div className="App">
         <Navbar />
         <div className="container">
-          <Search />
+          <Search searchUsers={this.searchUsers} />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>
