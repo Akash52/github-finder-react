@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
 :root {
   --primary-color: #6514e7;
   --dark-color: #333333;
@@ -19,10 +21,6 @@ body {
   background-color: #fff;
   color: #333;
 }
-
-
-  
-
 
 a {
   color: var(--primary-color);
@@ -113,8 +111,13 @@ img {
 /* Cards */
 .card {
   padding: 1rem;
-  border: #ccc 1px dotted;
   margin: 0.7rem 0;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+  opacity: 0.9;
+  color: #28a745;
 }
 
 /* List */
@@ -201,9 +204,11 @@ img {
   display: inline-block;
   background: var(--light-color);
   color: #333;
-  padding: 0.4rem 1.3rem;
+  padding: 0.4rem 1.4rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
@@ -311,6 +316,14 @@ img {
 /* Forms */
 input {
   margin: 1.2rem 0;
+  transition: width 0.3s ease;
+  outline: none;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
 }
 
 .form-text {
@@ -358,9 +371,9 @@ table th {
   opacity: 0.9;
   margin-bottom: 1rem;
 
-  -webkit-box-shadow: 0px 2px 33px -10px rgba(71,114,254,0.3);
-  -moz-box-shadow: 0px 2px 33px -10px rgba(71,114,254,0.3);
-  box-shadow: 0px 2px 33px -10px rgba(71,114,254,0.3);
+  -webkit-box-shadow: 0px 2px 33px -10px rgba(71, 114, 254, 0.3);
+  -moz-box-shadow: 0px 2px 33px -10px rgba(71, 114, 254, 0.3);
+  box-shadow: 0px 2px 33px -10px rgba(71, 114, 254, 0.3);
 }
 
 .navbar ul {
