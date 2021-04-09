@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from './component/layout/Navbar'
 import Users from './component/layout/users/Users'
+import User from './component/layout/users/User'
 import axios from 'axios'
 import './App.css'
 import Search from './component/layout/users/Search'
@@ -11,6 +12,7 @@ import About from './component/pages/About'
 class App extends Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null,
   }
@@ -35,6 +37,18 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false })
   }
 
+  // Get single Github user
+
+  getUser = async (username) => {
+    this.setState({ loading: true })
+    const REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
+    const REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
+    const res = await axios.get(
+      `https://api.github.com/search/users/${username}?client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
+    )
+    this.setState({ user: res.data, loading: false })
+  }
+
   // Clear USER from state
   clearUsers = () => {
     this.setState({ users: [], loading: false })
@@ -48,7 +62,7 @@ class App extends Component {
   }
 
   render() {
-    const { users, loading } = this.state
+    const { users, loading, user } = this.state
     return (
       <Router>
         <div className="App">
@@ -72,6 +86,18 @@ class App extends Component {
                 )}
               />
               <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    user={user}
+                    loading={loading}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </div>
