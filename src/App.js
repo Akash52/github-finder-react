@@ -29,8 +29,8 @@ class App extends Component {
   //Search  Github Users
   searchUsers = async (text) => {
     this.setState({ loading: true })
-    const REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
-    const REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
+    let REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
+    let REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
     const res = await axios.get(
       `https://api.github.com/search/users?q=${text}&client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
     )
@@ -44,7 +44,7 @@ class App extends Component {
     const REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
     const REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
     const res = await axios.get(
-      `https://api.github.com/search/users/${username}?client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
+      `https://api.github.com/users/${username}?client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
     )
     this.setState({ user: res.data, loading: false })
   }
