@@ -12,6 +12,9 @@ import {
   GET_REPOS,
 } from '../types'
 
+let REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
+let REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
+
 const GithubState = (props) => {
   const initialState = {
     users: [],
@@ -24,6 +27,19 @@ const GithubState = (props) => {
 
   //Search Users
 
+  const searchUsers = async (text) => {
+    setLoading()
+
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${text}&client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
+    )
+
+    dispatch({
+      type: SEARCH_USERS,
+      payload: res.data.items,
+    })
+  }
+
   // Get user
 
   // Get Repos
@@ -32,6 +48,8 @@ const GithubState = (props) => {
 
   //Set Loading
 
+  const setLoading = () => dispatch({ type: SET_LOADING })
+
   return (
     <GithubContext.Provider
       value={{
@@ -39,6 +57,7 @@ const GithubState = (props) => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
+        searchUsers,
       }}
     >
       {props.children}
