@@ -13,8 +13,6 @@ import GithubState from './context/github/GithubState'
 let REACT_CLIENT_ID = 'ccd3a0c757c978538dd4'
 let REACT_CLIENT_KEY = '05579e08c00b61cae13f066d6b5dc818e8b71842'
 const App = () => {
-  const [users, setUsers] = useState([])
-  const [user, setUser] = useState({})
   const [repos, setRepos] = useState([])
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState(null)
@@ -29,19 +27,8 @@ const App = () => {
   //   )
   //   this.setState({ users: res.data, loading: false })
   // }
-  //Search  Github Users
 
   // Get single Github user
-
-  const getUser = async (username) => {
-    setLoading(true)
-
-    const res = await axios.get(
-      `https://api.github.com/users/${username}?client_id=${REACT_CLIENT_ID}&client_secret=${REACT_CLIENT_KEY}`
-    )
-    setUser(res.data)
-    setLoading(false)
-  }
 
   // Get users Repos
 
@@ -56,10 +43,6 @@ const App = () => {
   }
 
   // Clear USER from state
-  const clearUsers = () => {
-    setUsers([])
-    setLoading(false)
-  }
 
   // Set Alert
 
@@ -81,12 +64,8 @@ const App = () => {
                 path="/"
                 render={(props) => (
                   <Fragment>
-                    <Search
-                      clearUsers={clearUsers}
-                      showClear={users.length > 0 ? true : false}
-                      setAlert={showAlert}
-                    />
-                    <Users loading={loading} users={users} />
+                    <Search setAlert={showAlert} />
+                    <Users />
                   </Fragment>
                 )}
               />
@@ -97,10 +76,8 @@ const App = () => {
                 render={(props) => (
                   <User
                     {...props}
-                    getUser={getUser}
                     getUserRepos={getUserRepos}
                     repos={repos}
-                    user={user}
                     loading={loading}
                   />
                 )}
